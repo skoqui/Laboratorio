@@ -1,62 +1,79 @@
 import subprocess as s
 import os
 
-
-def criar_pasta(ip):
-    if not os.path.exists(ip):
-        os.makedirs(ip)
-    os.chdir(ip)
+TARGET = "ourhouse.underarmour.com"
+BASE_DIR = TARGET.replace(".", "_")
+WORDLIST = "/usr/share/wordlists/common.txt"
 
 
-def ping(ip):
-    s.call(["bash", "-c", f"ping -c 3 {ip} > {ip}_ping.txt"])
+def criar_pasta():
+    if not os.path.exists(BASE_DIR):
+        os.makedirs(BASE_DIR)
 
 
-def nmap(ip):
-    s.call(["nmap", "-Pn", "-sV", "-oN", f"{ip}_nmap.txt", ip])
+def run_cmd(cmd):
+    s.call(cmd, stdout=s.DEVNULL, stderr=s.DEVNULL)
 
 
-def dns_enum(dominio):
-    output = f"{dominio}_dns.txt"
-
-    s.call(["bash", "-c", f'echo "====== A ======" > {output}'])
-    s.call(["bash", "-c", f"dig A {dominio} >> {output}"])
-
-    s.call(["bash", "-c", f'echo "\n\n====== AAAA ======" >> {output}'])
-    s.call(["bash", "-c", f"dig AAAA {dominio} >> {output}"])
-
-    s.call(["bash", "-c", f'echo "\n\n====== MX ======" >> {output}'])
-    s.call(["bash", "-c", f"dig MX {dominio} >> {output}"])
-
-    s.call(["bash", "-c", f'echo "\n\n====== NS ======" >> {output}'])
-    s.call(["bash", "-c", f"dig NS {dominio} >> {output}"])
+def ping():
+    output = f"{BASE_DIR}/{TARGET}_ping.txt"
+    run_cmd(["bash", "-c", f"ping -c 3 {TARGET} > {output}"])
 
 
-def whois(dominio):
-    s.call(["bash", "-c", f"whois {dominio} > {dominio}_whois.txt"])
+def nmap_scan():
+    output = f"{BASE_DIR}/{TARGET}_nmap.txt"
+    run_cmd(["nmap", "-Pn", "-sV", "-oN", output, TARGET])
 
 
-def gobuster(ip):
-    s.call(
+def dns_enum():
+    output = f"{BASE_DIR}/{TARGET}_dns.txt"
+
+    cmds = [
+        f'echo "====== A ======" > {output}',
+        f"dig A {TARGET} >> {output}",
+        f'echo "\n====== AAAA ======" >> {output}',
+        f"dig AAAA {TARGET} >> {output}",
+        f'echo "\n====== MX ======" >> {output}',
+        f"dig MX {TARGET} >> {output}",
+        f'echo "\n====== NS ======" >> {output}',
+        f"dig NS {TARGET} >> {output}",
+    ]
+
+    for cmd in cmds:
+        run_cmd(["bash", "-c", cmd])
+
+
+def whois_lookup():
+    output = f"{BASE_DIR}/{TARGET}_whois.txt"
+    run_cmd(["bash", "-c", f"whois {TARGET} > {output}"])
+
+
+def ffuf_fuzz():
+    output = f"{BASE_DIR}/{TARGET}_ffuf.txt"
+
+    run_cmd(
         [
-            "gobuster",
-            "dir",
+            "ffuf",
             "-u",
-            "www.google.com.br",
+            f"https://{TARGET}/FUZZ",
             "-w",
-            "/usr/share/wordlists/common.txt",
+            WORDLIST,
+            "-mc",
+            "200,204,301,302,307,401,403",
             "-t",
             "50",
+            "-of",
+            "txt",
             "-o",
-            f"{ip}_gobuster.txt",
-            ip,
+            output,
         ]
     )
 
 
-criar_pasta("teste")
-ping("teste.com.br")
-nmap("teste.com.br")
-dns_enum("teste.com.br")
-whois("teste.com.br")
-gobuster("localhost")
+if __name__ == "__main__":
+    criar_pasta()
+    ping()
+    nmap_scan()
+    dns_enum()
+    whois_lookup()
+    ffuf_fuzz()
