@@ -1,0 +1,90 @@
+====== A ======
+
+; <<>> DiG 9.20.15-1~deb13u1-Debian <<>> A 10.67.168.197
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 54258
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;10.67.168.197.			IN	A
+
+;; AUTHORITY SECTION:
+.			86399	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2025122900 1800 900 604800 86400
+
+;; Query time: 7 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8) (UDP)
+;; WHEN: Mon Dec 29 14:32:46 -03 2025
+;; MSG SIZE  rcvd: 117
+
+
+
+====== AAAA ======
+
+; <<>> DiG 9.20.15-1~deb13u1-Debian <<>> AAAA 10.67.168.197
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 26883
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;10.67.168.197.			IN	AAAA
+
+;; AUTHORITY SECTION:
+.			86399	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2025122900 1800 900 604800 86400
+
+;; Query time: 11 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8) (UDP)
+;; WHEN: Mon Dec 29 14:32:46 -03 2025
+;; MSG SIZE  rcvd: 117
+
+
+
+====== MX ======
+
+; <<>> DiG 9.20.15-1~deb13u1-Debian <<>> MX 10.67.168.197
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 33395
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;10.67.168.197.			IN	MX
+
+;; AUTHORITY SECTION:
+.			86373	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2025122900 1800 900 604800 86400
+
+;; Query time: 11 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8) (UDP)
+;; WHEN: Mon Dec 29 14:32:46 -03 2025
+;; MSG SIZE  rcvd: 117
+
+
+
+====== NS ======
+
+; <<>> DiG 9.20.15-1~deb13u1-Debian <<>> NS 10.67.168.197
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 33255
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;10.67.168.197.			IN	NS
+
+;; AUTHORITY SECTION:
+.			86399	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2025122900 1800 900 604800 86400
+
+;; Query time: 11 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8) (UDP)
+;; WHEN: Mon Dec 29 14:32:46 -03 2025
+;; MSG SIZE  rcvd: 117
+
