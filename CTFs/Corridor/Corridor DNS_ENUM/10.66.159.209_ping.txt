@@ -1,0 +1,8 @@
+PING 10.66.159.209 (10.66.159.209) 56(84) bytes of data.
+64 bytes from 10.66.159.209: icmp_seq=1 ttl=62 time=130 ms
+64 bytes from 10.66.159.209: icmp_seq=2 ttl=62 time=130 ms
+64 bytes from 10.66.159.209: icmp_seq=3 ttl=62 time=141 ms
+
+--- 10.66.159.209 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 130.154/133.738/140.724/4.940 ms

@@ -1,0 +1,9 @@
+# Nmap 7.95 scan initiated Mon Dec 29 10:33:49 2025 as: nmap -Pn -sV -oN 10.66.159.209_nmap.txt 10.66.159.209
+Nmap scan report for 10.66.159.209
+Host is up (0.13s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Werkzeug httpd 2.0.3 (Python 3.10.2)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Dec 29 10:34:04 2025 -- 1 IP address (1 host up) scanned in 14.99 seconds
