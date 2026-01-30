@@ -4,7 +4,7 @@
 **Plataforma:** TryHackMe  
 
 
-![[Head](Head.png)]
+![Head](Head.png)
 
 ---
 
