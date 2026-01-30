@@ -1,182 +1,63 @@
-# 🛡️ SIEM com Wazuh — Instalação e Setup
+# 🛡️ SOC — Security Operations Center
 
-Este diretório documenta a instalação e o setup de um ambiente **SIEM baseado em Wazuh** utilizando o método **All-in-One** em **Ubuntu Linux**, com foco em estudos de **SOC, Blue Team e Segurança da Informação**.
+Este diretório reúne meus **laboratórios, estudos e relatórios práticos voltados para Operações de Segurança (SOC)**, com foco em monitoramento, detecção, resposta a incidentes e análise de eventos em ambientes simulados e controlados.
 
-O objetivo é servir como **laboratório pessoal**, base para **portfólio técnico** e referência para futuras automações, integrações e testes de detecção.
-
----
-
-## 📌 Visão Geral
-
-* **SIEM:** Wazuh
-* **Modo de instalação:** All-in-One
-* **Plataforma:** Ubuntu Server/Desktop
-* **Método:** Wazuh Installation Assistant
-* **Interface:** Wazuh Dashboard (Web)
-
-A instalação inclui automaticamente:
-
-* Wazuh Manager
-* Wazuh Indexer (OpenSearch)
-* Wazuh Dashboard
-* Filebeat
+O objetivo é demonstrar não apenas o uso de ferramentas, mas principalmente a **metodologia operacional de um SOC real**, incluindo processos, playbooks, classificação de alertas e mapeamento de ameaças.
 
 ---
 
-## 💻 Ambiente
+## 🎯 Objetivos
 
-| Item       | Valor                                  |
-| ---------- | -------------------------------------- |
-| Sistema    | Ubuntu Linux                           |
-| Data       | 24/01/2026                             |
-| Método     | Terminal (Bash)                        |
-| Acesso Web | [https://localhost](https://localhost) |
+* Desenvolver habilidades práticas em **monitoramento e resposta a incidentes**
+* Simular operações de um SOC corporativo
+* Aplicar frameworks como **MITRE ATT&CK** na análise de ameaças
+* Documentar processos técnicos de forma clara e reproduzível
 
 ---
 
-## ⚙️ Pré-requisitos
+## 🛠️ Tecnologias e Ferramentas
 
-Antes de iniciar, garanta que:
-
-* Você tem privilégios de **sudo**
-* O sistema está atualizado
-* Porta **443/TCP** liberada (caso acesse remotamente)
-* Pelo menos **4 GB de RAM** recomendados
-
----
-
-## 🔄 Atualização do Sistema
-
-```bash
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl -y
-```
+* **SIEM:** Wazuh, Elastic Stack, Splunk
+* **Sistemas:** Linux (Ubuntu, Kali), Windows Server
+* **Coleta e Logs:** Sysmon, Auditd, Beats
+* **Frameworks:** MITRE ATT&CK, NIST Incident Response
+* **Automação:** Python, Bash
 
 ---
 
-## 📥 Download do Instalador
+## 📑 Metodologia
 
-```bash
-curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
-```
+Os laboratórios e relatórios seguem um fluxo inspirado em operações reais de SOC:
 
----
-
-## 🚀 Instalação All-in-One
-
-```bash
-sudo bash wazuh-install.sh -a
-```
-
-Este comando realiza automaticamente:
-
-* Configuração do Wazuh Manager
-* Deploy do Indexer
-* Setup do Dashboard
-* Geração de credenciais
+1. **Coleta de Eventos** — Ingestão de logs e telemetria
+2. **Correlação** — Identificação de padrões e comportamentos suspeitos
+3. **Detecção** — Geração e validação de alertas
+4. **Classificação** — Definição de severidade e impacto
+5. **Resposta** — Contenção, erradicação e recuperação
+6. **Lições Aprendidas** — Documentação e melhoria contínua
 
 ---
 
-## 🔐 Credenciais
+## 📌 Padrão de Relatórios
 
-Ao final da instalação, o script gera:
+Os relatórios dentro deste diretório normalmente incluem:
 
-* Usuário do Dashboard
-* Senha de acesso
-
-> ⚠️ **Importante:** Salve essas credenciais em local seguro. Elas não são exibidas novamente automaticamente.
-
----
-
-## 🌐 Acesso ao Dashboard
-
-No próprio servidor:
-
-```
-https://localhost
-```
-
-Ou remotamente:
-
-```
-https://<IP_DO_SERVIDOR>
-```
-
-Se aparecer um aviso de certificado, basta aceitar a exceção (certificado autoassinado).
+* Resumo do incidente
+* Linha do tempo (timeline)
+* Indicadores de Comprometimento (IOCs)
+* Mapeamento MITRE ATT&CK
+* Impacto e risco
+* Ações de resposta
+* Recomendações de mitigação
 
 ---
 
-## 🧪 Validação da Instalação
+## ⚠️ Aviso Legal
 
-Verifique se os serviços estão ativos:
+Todo o conteúdo presente neste diretório é destinado **exclusivamente para fins educacionais e de pesquisa**.
 
-```bash
-sudo systemctl status wazuh-manager
-sudo systemctl status wazuh-indexer
-sudo systemctl status wazuh-dashboard
-```
-
-Todos devem aparecer como **active (running)**.
+Nenhuma técnica, configuração ou procedimento aqui descrito deve ser aplicado em ambientes reais **sem autorização formal e validação adequada**.
 
 ---
 
-## 📚 Próximos Passos
-
-* Adicionar agentes Linux e Windows
-* Criar regras customizadas
-* Integrar com Sysmon
-* Simular ataques (MITRE ATT&CK)
-* Criar dashboards personalizados
-* Integrar com cloud (AWS / Azure)
-
----
-
-## 🧠 Conceitos Estudados
-
-* SIEM
-* Log Management
-* Threat Detection
-* HIDS
-* MITRE ATT&CK
-* Blue Team Operations
-* SOC Workflow
-
----
-
-## 🛠️ Tecnologias
-
-* Wazuh
-* OpenSearch
-* Ubuntu Linux
-* Bash
-* Syslog
-* Filebeat
-
----
-
-## 📸 Evidências
-
-Prints e diagramas podem ser adicionados na pasta `docs/` para documentar:
-
-* Alertas gerados
-* Regras de detecção
-* Simulações de ataque
-* Fluxo de resposta a incidentes
-
----
-
-## 📄 Licença
-
-Este projeto é destinado exclusivamente para fins **educacionais e laboratoriais**.
-
----
-
-## ✍️ Autor
-
-**Luis Scoqui**
-Estudante de Segurança da Informação — UNIP
-Foco em SOC, SIEM, Blue Team e Cibersegurança
-
----
-
-> *"Detectar cedo é proteger melhor."* 🛡️
+📌 *Este diretório evolui conforme novos laboratórios, ferramentas e cenários de segurança são estudados e implementados.*
