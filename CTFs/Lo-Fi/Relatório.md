@@ -3,6 +3,8 @@
 **Dificuldade:** Easy  
 **Plataforma:** TryHackMe  
 
+![[Pasted image 20260130142834.png]]
+
 ---
 
 ## Informações Padrão
