@@ -1,17 +1,34 @@
+#!/usr/bin/env python3
+
 import subprocess as s
 import os
+import sys
 
-TARGET = "ourhouse.underarmour.com"
-BASE_DIR = TARGET.replace(".", "_")
+TARGET = "10.67.151.161"
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+BASE_DIR = os.path.join(SCRIPT_DIR, TARGET.replace(".", "_"))
 
 
 def criar_pasta():
+    print("[DEBUG] Script rodando em:", SCRIPT_DIR)
+    print("[DEBUG] Pasta de sa�da:", BASE_DIR)
+
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
+        print(f"[+] Pasta criada: {BASE_DIR}")
+    else:
+        print(f"[+] Pasta j� existe: {BASE_DIR}")
 
 
 def run_cmd(cmd):
-    s.call(cmd, stdout=s.DEVNULL, stderr=s.DEVNULL)
+    print("[+] Executando:", " ".join(cmd))
+    result = s.run(cmd)
+
+    if result.returncode != 0:
+        print("[!] Erro ao executar comando!")
+        sys.exit(1)
 
 
 def ping():
@@ -55,7 +72,7 @@ def gobuster_scan():
             "gobuster",
             "dir",
             "-u",
-            f"https://{TARGET}",
+            f"http://{TARGET}",
             "-w",
             "/usr/share/wordlists/dirb/common.txt",
             "-t",
@@ -73,3 +90,5 @@ if __name__ == "__main__":
     dns_enum()
     whois_lookup()
     gobuster_scan()
+
+    print("\n[\u2714] Recon finalizado com sucesso!")
